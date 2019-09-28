@@ -1,0 +1,33 @@
+html,
+
+a {
+    color: #000000;
+    text-decoration: none;
+} 
+a:hover {
+    color: blue;
+}
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+}
+.navbar-inverse .navbar-brand:hover {
+    color: #27038a;
+}
+
+.detail-view{
+    background-color: #008080 !important;
+    /* width: 70%; */
+    max-width: 50%;
+}
+table.detail-view th {
+
+	width: 25%;
+
+}
+
+
+table.detail-view td {
+
+	width: 75%;
+
+}
