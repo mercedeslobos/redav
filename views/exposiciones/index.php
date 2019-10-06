@@ -29,7 +29,12 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'id',
             'nro',
             'fecha',
-            'policias_id',
+            // 'policias_id',
+            [
+                'attribute'=>'policias_id',
+                'label' => 'Matricula',
+                'value'=>'policias.matricula',
+            ],  
             'participa_division',
             //'siniestros_id',
 
