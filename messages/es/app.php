@@ -77,7 +77,7 @@ return [
     'Personas' => '',
     'Personas ID' => '',
     'Policias' => 'Policías',
-    'Policias ID' => '',
+    'Policias ID' => 'ID_Policía',
     'Provincia' => '',
     'Provincia ID' => 'Provincia',
     'Provincias' => '',

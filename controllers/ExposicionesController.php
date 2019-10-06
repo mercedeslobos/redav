@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\Policias;
 use app\models\Exposiciones;
 use app\models\ExposicionesSearch;
 use yii\web\Controller;
