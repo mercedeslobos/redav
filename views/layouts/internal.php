@@ -42,7 +42,7 @@ AppAsset::register($this);
                     ],
         'items' => [
             [
-                'label' => 'Inicio', 'url' => ['/site/about'],
+                'label' => 'Inicio', 'url' => ['/exposiciones/inicio'],
                 'linkOptions' => ['style' => 'color: #fff; ']
             ],
             [
