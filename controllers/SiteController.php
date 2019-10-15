@@ -18,18 +18,7 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-            // 'access' => [
-            //     'class' => AccessControl::className(),
-            //     'only' => ['logout'],
-            //     'rules' => [
-            //         [
-            //             'actions' => ['logout'],
-            //             'allow' => true,
-            //             'roles' => ['@'],
-            //         ],
-            //     ],
-            // ],
-            'access' => [
+                'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['login', 'logout'],
                 'rules' => [
@@ -78,7 +67,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         if (!Yii::$app->user->isGuest) 
-            return $this->redirect( array('exposiciones/index') );
+            return $this->redirect( array('exposiciones/inicio') );
         else
             return $this->render('index');
         
@@ -99,7 +88,7 @@ class SiteController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             //return $this->goBack();
-            return $this->redirect( array('exposiciones/index') );
+            return $this->redirect( array('exposiciones/inicio') );
         }
 
         return $this->render('login', [

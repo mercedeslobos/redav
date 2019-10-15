@@ -44,12 +44,14 @@ class Personas extends \yii\db\ActiveRecord
             [['tipo_documento','documento', 'nombre', 'apellido', 'edad', 'fecha_nacimiento', 'edo_civil', 'direccion', 'localidad', 'provincia_id', 'nacionalidad'], 'required'],
             [['provincia_id'], 'integer'],
             [['tipo_documento', 'fecha_nacimiento', 'edo_civil'], 'string', 'max' => 10],
-            [['documento'], 'string', 'max' => 20],
+            [['documento','licencia_nro'], 'string', 'max' => 20],
             [['nombre', 'apellido', 'localidad', 'nacionalidad'], 'string', 'max' => 50],
             [['edad'], 'string', 'max' => 2],
             [['direccion'], 'string', 'max' => 250],
             [['documento'], 'unique'],
+            [['razon_social'], 'string', 'max' => 100],
             [['provincia_id'], 'exist', 'skipOnError' => true, 'targetClass' => Provincias::className(), 'targetAttribute' => ['provincia_id' => 'id']],
+            /*Agregar siniestros_id*/
         ];
     }
 
@@ -71,6 +73,8 @@ class Personas extends \yii\db\ActiveRecord
             'localidad' => Yii::t('app', 'Localidad'),
             'provincia_id' => Yii::t('app', 'Provincia ID'),
             'nacionalidad' => Yii::t('app', 'Nacionalidad'),
+            'razon_social' => Yii::t('app', 'Razon Social'),
+            'licencia_nro' => Yii::t('app', 'Licencia Nro'),
         ];
     }
 

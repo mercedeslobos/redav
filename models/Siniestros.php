@@ -35,6 +35,7 @@ class Siniestros extends \yii\db\ActiveRecord
             [['fecha'], 'safe'],
             [['lugar'], 'string'],
             [['hora'], 'string', 'max' => 20],
+            /**Agregar coordenadas */
         ];
     }
 

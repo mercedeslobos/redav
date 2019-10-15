@@ -42,18 +42,18 @@ AppAsset::register($this);
                     ],
         'items' => [
             [
-                'label' => 'Inicio', 'url' => ['/exposiciones/index'],
+                'label' => 'Inicio', 'url' => ['/site/about'],
                 'linkOptions' => ['style' => 'color: #fff; ']
             ],
             [
                 'label' => 'Exposiciones',
                 'linkOptions' => ['style' => 'color: #fff; '],
                 'items' => [
-                    ['label' => 'Cargar', 'url' => ['#']],
+                    ['label' => 'Cargar', 'url' => ['/exposiciones/create']],
                     '<li class="divider"></li>',
-                    ['label' => 'Exposiciones Generadas', 'url' => ['#']],
+                    ['label' => 'Exposiciones Generadas', 'url' => ['/exposiciones/index']],
                     '<li class="divider"></li>',
-                    ['label' => 'Exposiciones Digitalizadas', 'url' => ['#']],
+                    ['label' => 'Exposiciones Digitalizadas', 'url' => ['/exposiciones-digitalizadas/index']],
                     '<li class="divider"></li>',
                     ['label' => 'Imprimir', 'url' => ['#']], 
                     '<li class="divider"></li>',

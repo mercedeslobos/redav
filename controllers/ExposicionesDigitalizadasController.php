@@ -19,6 +19,7 @@ class ExposicionesDigitalizadasController extends Controller
     /**
      * {@inheritdoc}
      */
+    public $layout = 'internal.php';
     public function behaviors()
     {
         return [
