@@ -85,29 +85,16 @@ class ExposicionesDigitalizadasController extends Controller
     {
         $model = new ExposicionesDigitalizadas();
 
-        // if ($model->load(Yii::$app->request->post()) && $model->save()) {
-        //    return $this->redirect(['view', 'id' => $model->id]);
-        // }
-
-        // return $this->render('create', [
-        //     'model' => $model,
-        // ]);
-
         if ($model->load(Yii::$app->request->post())) {
-            // get the uploaded file instance. for multiple file uploads
-            // the following data will return an array
-            $file = UploadedFile::getInstance($model, 'file');
+            // process uploaded image file instance
+            $fileup = $model->uploadFile();
 
-            // store the source file name
-            $model->archivo = $file->name;
-            $ext = end((explode(".", $file->name)));
-
-            // the path to save file, you can set an uploadPath
-            // in Yii::$app->params (as used in example below)
-            $path = Yii::$app->params['uploadPath'] . $model->archivo;
-
-            if($model->save()){
-                $file->saveAs($path);
+            if ($model->save()) {
+                // upload only if valid uploaded file instance found
+                if ($fileup !== false) {
+                    $path = $model->getFile();
+                    $fileup->saveAs($path);
+                }
                 return $this->redirect(['view', 'id'=>$model->id]);
             } else {
                 // error in saving model
@@ -128,13 +115,31 @@ class ExposicionesDigitalizadasController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $oldFile = $model->getFile();
+        $oldFileName = $model->archivo;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            // process uploaded image file instance
+            $fileup = $model->uploadFile();
+
+            // revert back if no valid file instance uploaded
+            if ($fileup === false) {
+                $model->archivo = $oldFileName;
+            }
+
+            if ($model->save()) {
+                // upload only if valid uploaded file instance found
+                if ($fileup !== false && unlink($oldFile)) { // delete old and overwrite
+                    $path = $model->getFile();
+                    $fileup->saveAs($path);
+                }
+                return $this->redirect(['view', 'id'=>$model->id]);
+            } else {
+                // error in saving model
+            }
         }
-
         return $this->render('update', [
-            'model' => $model,
+            'model'=>$model,
         ]);
     }
 
@@ -147,8 +152,15 @@ class ExposicionesDigitalizadasController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
 
+        // validate deletion and on failure process any exception 
+        // e.g. display an error message 
+        if ($model->delete()) {
+            if (!$model->deleteFile()) {
+                Yii::$app->session->setFlash('error', 'Error deleting image');
+            }
+        }
         return $this->redirect(['index']);
     }
 

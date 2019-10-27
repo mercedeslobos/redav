@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "exposiciones_digitalizadas".
@@ -31,7 +32,7 @@ class ExposicionesDigitalizadas extends \yii\db\ActiveRecord
     * @var mixed image the attribute for rendering the file input
     * widget for upload on the form
     */
-    public $file;
+    public $fileup;
      
     public function rules()
     {
@@ -40,8 +41,8 @@ class ExposicionesDigitalizadas extends \yii\db\ActiveRecord
             [['fecha_siniestro'], 'safe'],
             [['nro_exposicion'], 'integer'],
             [['archivo'], 'string', 'max' => 50],
-            [['file'], 'safe'],
-            [['file'], 'file', 'extensions'=>'jpg, pdf, png'],
+            [['fileup'], 'safe'],
+            [['fileup'], 'file', 'extensions'=>'jpg, pdf, png'],
         ];
     }
 
@@ -55,6 +56,7 @@ class ExposicionesDigitalizadas extends \yii\db\ActiveRecord
             'archivo' => Yii::t('app', 'Archivo'),
             'fecha_siniestro' => Yii::t('app', 'Fecha Siniestro'),
             'nro_exposicion' => Yii::t('app', 'Nro Exposicion'),
+            'fileup' => Yii::t('app','File'),
         ];
     }
 
@@ -66,4 +68,73 @@ class ExposicionesDigitalizadas extends \yii\db\ActiveRecord
     {
         return new ExposicionesQuery(get_called_class());
     }
+
+     /**
+     * fetch stored image file name with complete path 
+     * @return string
+     */
+    public function getFile() 
+    {
+        return isset($this->archivo) ? Yii::$app->params['uploadPath'] . $this->archivo : null;
+    }
+
+    /**
+     * fetch stored image url
+     * @return string
+     */
+    public function getFileUrl() 
+    {
+        // return a default image placeholder if your source avatar is not found
+        $archivo = isset($this->archivo) ? $this->archivo : 'default_user.jpg';
+        return Yii::$app->params['uploadUrl'] . $archivo;
+    }
+
+    /**
+    * Process upload of image
+    *
+    * @return mixed the uploaded image instance
+    */
+    public function uploadFile() {
+        // get the uploaded file instance. for multiple file uploads
+        // the following data will return an array (you may need to use
+        // getInstances method)
+        $fileup = UploadedFile::getInstance($this, 'fileup');
+
+        // if no image was uploaded abort the upload
+        if (empty($fileup)) {
+            return false;
+        }
+
+        // store the source file name
+        $this->archivo = $fileup->name;
+        $ext = end((explode(".", $fileup->name)));
+
+        // the uploaded image instance
+        return $fileup;
+    }
+
+    /**
+    * Process deletion of image
+    *
+    * @return boolean the status of deletion
+    */
+    public function deleteFile() {
+        $file = $this->getFile();
+
+        // check if file exists on server
+        if (empty($file) || !file_exists($file)) {
+            return false;
+        }
+
+        // check if uploaded file can be deleted on server
+        if (!unlink($file)) {
+            return false;
+        }
+
+        // if deletion successful, reset your file attributes
+        $this->archivo = null;
+
+        return true;
+    }
 }
+
