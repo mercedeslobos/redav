@@ -20,7 +20,7 @@ use kartik\file\FileInput;
         'accept'=>'image/*'
     ],
     'pluginOptions'=>[
-        'allowedFileExtensions'=>['jpg','gif','png'
+        'allowedFileExtensions'=>['pdf','gif','png'
         ]
 ]]);?>
 

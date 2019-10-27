@@ -11,7 +11,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use app\config\AccessRule;
 use yii\web\UploadedFile;
-Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/documentos/digitalizadas/';
+
 /**
  * ExposicionesDigitalizadasController implements the CRUD actions for ExposicionesDigitalizadas model.
  */
@@ -103,15 +103,15 @@ class ExposicionesDigitalizadasController extends Controller
             $ext = end((explode(".", $image->name)));
 
             // generate a unique file name
-            $model->avatar = Yii::$app->security->generateRandomString().".{$ext}";
+            // $model->avatar = Yii::$app->security->generateRandomString().".{$ext}";
 
             // the path to save file, you can set an uploadPath
             // in Yii::$app->params (as used in example below)
-            $path = Yii::$app->params['uploadPath'] . $model->avatar;
+            $path = Yii::$app->params['uploadPath'] . $model->archivo;
 
             if($model->save()){
                 $image->saveAs($path);
-                return $this->redirect(['view', 'id'=>$model->_id]);
+                return $this->redirect(['view', 'id'=>$model->id]);
             } else {
                 // error in saving model
             }
