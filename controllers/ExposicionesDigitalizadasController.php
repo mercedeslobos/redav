@@ -96,21 +96,18 @@ class ExposicionesDigitalizadasController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             // get the uploaded file instance. for multiple file uploads
             // the following data will return an array
-            $image = UploadedFile::getInstance($model, 'image');
+            $file = UploadedFile::getInstance($model, 'file');
 
             // store the source file name
-            $model->archivo = $image->name;
-            $ext = end((explode(".", $image->name)));
-
-            // generate a unique file name
-            // $model->avatar = Yii::$app->security->generateRandomString().".{$ext}";
+            $model->archivo = $file->name;
+            $ext = end((explode(".", $file->name)));
 
             // the path to save file, you can set an uploadPath
             // in Yii::$app->params (as used in example below)
             $path = Yii::$app->params['uploadPath'] . $model->archivo;
 
             if($model->save()){
-                $image->saveAs($path);
+                $file->saveAs($path);
                 return $this->redirect(['view', 'id'=>$model->id]);
             } else {
                 // error in saving model

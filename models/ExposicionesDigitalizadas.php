@@ -31,7 +31,7 @@ class ExposicionesDigitalizadas extends \yii\db\ActiveRecord
     * @var mixed image the attribute for rendering the file input
     * widget for upload on the form
     */
-    public $image;
+    public $file;
      
     public function rules()
     {
@@ -40,8 +40,8 @@ class ExposicionesDigitalizadas extends \yii\db\ActiveRecord
             [['fecha_siniestro'], 'safe'],
             [['nro_exposicion'], 'integer'],
             [['archivo'], 'string', 'max' => 50],
-            [['image'], 'safe'],
-            [['image'], 'file', 'extensions'=>'jpg, gif, png'],
+            [['file'], 'safe'],
+            [['file'], 'file', 'extensions'=>'jpg, pdf, png'],
         ];
     }
 

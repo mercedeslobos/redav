@@ -10,17 +10,17 @@ use kartik\file\FileInput;
 <div class="exposiciones-digitalizadas-form">
 <?php $form = ActiveForm::begin(); ?>
 
-<?= $form->field($model, 'archivo')->textInput(['maxlength' => true]) ?>
+<!-- <?= $form->field($model, 'archivo')->textInput(['maxlength' => true]) ?> -->
 <?= $form->field($model, 'fecha_siniestro')->textInput() ?>
-    <?= $form->field($model, 'nro_exposicion')->textInput() ?>
+<?= $form->field($model, 'nro_exposicion')->textInput() ?>
 
 <!-- // your fileinput widget for single file upload -->
-<?= $form->field($model, 'image')->widget(FileInput::classname(),[
+<?= $form->field($model, 'file')->widget(FileInput::classname(),[
     'options'=>[
-        'accept'=>'image/*'
+        'accept'=>'file/*'
     ],
     'pluginOptions'=>[
-        'allowedFileExtensions'=>['pdf','gif','png'
+        'allowedFileExtensions'=>['pdf','jpg','png'
         ]
 ]]);?>
 
