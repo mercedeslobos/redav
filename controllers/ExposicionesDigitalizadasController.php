@@ -10,7 +10,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use app\config\AccessRule;
-
+use yii\web\UploadedFile;
+Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/documentos/digitalizadas/';
 /**
  * ExposicionesDigitalizadasController implements the CRUD actions for ExposicionesDigitalizadas model.
  */
@@ -84,12 +85,39 @@ class ExposicionesDigitalizadasController extends Controller
     {
         $model = new ExposicionesDigitalizadas();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+        // if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        //    return $this->redirect(['view', 'id' => $model->id]);
+        // }
 
+        // return $this->render('create', [
+        //     'model' => $model,
+        // ]);
+
+        if ($model->load(Yii::$app->request->post())) {
+            // get the uploaded file instance. for multiple file uploads
+            // the following data will return an array
+            $image = UploadedFile::getInstance($model, 'image');
+
+            // store the source file name
+            $model->archivo = $image->name;
+            $ext = end((explode(".", $image->name)));
+
+            // generate a unique file name
+            $model->avatar = Yii::$app->security->generateRandomString().".{$ext}";
+
+            // the path to save file, you can set an uploadPath
+            // in Yii::$app->params (as used in example below)
+            $path = Yii::$app->params['uploadPath'] . $model->avatar;
+
+            if($model->save()){
+                $image->saveAs($path);
+                return $this->redirect(['view', 'id'=>$model->_id]);
+            } else {
+                // error in saving model
+            }
+        }
         return $this->render('create', [
-            'model' => $model,
+            'model'=>$model,
         ]);
     }
 

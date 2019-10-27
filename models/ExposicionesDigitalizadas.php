@@ -11,6 +11,8 @@ use Yii;
  * @property string $archivo
  * @property string $fecha_siniestro
  * @property int $nro_exposicion
+ * @property array $avatar generated filename on server
+ * @property string $filename source filename from client
  */
 class ExposicionesDigitalizadas extends \yii\db\ActiveRecord
 {
@@ -24,7 +26,13 @@ class ExposicionesDigitalizadas extends \yii\db\ActiveRecord
 
     /**
      * {@inheritdoc}
-     */
+     * 
+     * 
+    * @var mixed image the attribute for rendering the file input
+    * widget for upload on the form
+    */
+    public $image;
+     
     public function rules()
     {
         return [
@@ -32,6 +40,8 @@ class ExposicionesDigitalizadas extends \yii\db\ActiveRecord
             [['fecha_siniestro'], 'safe'],
             [['nro_exposicion'], 'integer'],
             [['archivo'], 'string', 'max' => 50],
+            [['image'], 'safe'],
+            [['image'], 'file', 'extensions'=>'jpg, gif, png'],
         ];
     }
 
