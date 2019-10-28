@@ -55,6 +55,11 @@ $config = [
         ],
         */
     ],
+    'modules'=>[
+        'pdfjs' => [
+             'class' => '\yii2assets\pdfjs\Module',
+         ],
+      ],
     'params' => $params,
 ];
 
