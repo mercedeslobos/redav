@@ -97,7 +97,7 @@ return [
     'Update' => 'Editar',
     'Update Aseguradoras: {name}' => 'Aseguradora a Editar: {name}',
     'Update Consultas: {name}' => 'Editar Consulta: {name}',
-    'Update Exposiciones Digitalizadas: {name}' => '',
+    'Update Exposiciones Digitalizadas: {name}' => 'Editar Exposición Digitalizada Nro.: {name}',
     'Update Exposiciones: {name}' => 'Exposición a Editar: {name}',
     'Update Involucrados: {name}' => 'Involucrado a Editar: {name}',
     'Update Paises: {name}' => 'País a Editar: {name}',

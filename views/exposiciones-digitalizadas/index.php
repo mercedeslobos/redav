@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Exposiciones Digitalizadas'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Exposiciones Digitalizadas'), ['create'], ['class' => 'btn btn-info']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,10 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'archivo',
-            'fecha_siniestro',
+            //'id',
             'nro_exposicion',
+            'fecha_siniestro',
+            'archivo',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

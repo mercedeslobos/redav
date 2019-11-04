@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef33a3b0984e4f6150353d356de5ada3",
+    "content-hash": "31e834aa454d26704ec2c4c7eb92bd05",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -32,7 +32,7 @@
             "version": "3.3.11",
             "source": {
                 "type": "git",
-                "url": "git@github.com:RobinHerbots/Inputmask.git",
+                "url": "https://github.com/RobinHerbots/Inputmask.git",
                 "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
             },
             "dist": {
@@ -92,7 +92,7 @@
             "version": "v1.3.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/bestiejs/punycode.js.git",
+                "url": "git@github.com:bestiejs/punycode.js.git",
                 "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3"
             },
             "dist": {
@@ -101,6 +101,24 @@
                 "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3"
             },
             "type": "bower-asset"
+        },
+        {
+            "name": "bower-asset/viewerjs",
+            "version": "v0.5.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webodf/ViewerJS_release.git",
+                "reference": "4f6e52aaad44b4c11e5de28e40a488c0a4ccbebf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webodf/ViewerJS_release/zipball/4f6e52aaad44b4c11e5de28e40a488c0a4ccbebf",
+                "reference": "4f6e52aaad44b4c11e5de28e40a488c0a4ccbebf"
+            },
+            "type": "bower-asset",
+            "license": [
+                "AGPL-3.0"
+            ]
         },
         {
             "name": "bower-asset/yii2-pjax",
@@ -389,6 +407,51 @@
                 "yii2"
             ],
             "time": "2019-10-07T11:05:21+00:00"
+        },
+        {
+            "name": "lesha724/yii2-document-viewer",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lesha724/yii2-document-viewer.git",
+                "reference": "3f8ceef2e95b5f11bc3b8a87cd44857a7d937a51"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lesha724/yii2-document-viewer/zipball/3f8ceef2e95b5f11bc3b8a87cd44857a7d937a51",
+                "reference": "3f8ceef2e95b5f11bc3b8a87cd44857a7d937a51",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/viewerjs": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "lesha724\\documentviewer\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "lesha724",
+                    "email": "neff.alexey@gmail.com"
+                }
+            ],
+            "description": "виджет для отображения online документов с помощью google viewer и microsoft document viewer",
+            "keywords": [
+                "Viewer",
+                "ViewerJS",
+                "docs",
+                "extension",
+                "widget",
+                "yii2"
+            ],
+            "time": "2018-11-03T17:45:22+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
