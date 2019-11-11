@@ -33,8 +33,25 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>'policias.matricula',
             ],  
             'participa_division',
+            'siniestros_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'header' => 'Acciones',
+            'contentOptions' => ['style' => 'width:100px; white-space: normal;'],
+            'template' => '{print} {view} {update} {delete}',
+            'buttons' => [
+                'print' => function ($url) {
+                    return Html::a('<span class="glyphicon glyphicon-print"></span>', $url, ['title' => 'Imprimir']);
+                    },
+                'view' => function ($url,$model) {
+                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>',['exposiciones/view','idS'=>$model->siniestros_id], ['title' => 'Ver']);
+        
+                    },
+
+        ],
+
+        
+        ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

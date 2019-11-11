@@ -5,12 +5,16 @@ namespace app\controllers;
 use Yii;
 use app\models\Policias;
 use app\models\Exposiciones;
+use app\models\Siniestros;
+use app\models\Personas;
+use app\models\Vehiculos;
 use app\models\ExposicionesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use app\config\AccessRule;
+
 
 /**
  * ExposicionesController implements the CRUD actions for Exposiciones model.
@@ -30,7 +34,7 @@ class ExposicionesController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view','create','update','delete'],
+                        'actions' => ['index', 'view','create','update','delete','involucrado','vehiculo', 'exposicion'],
                         'roles' => ['@'],
                         // 'matchCallback' => function ($rule, $action){
                         //     $valid_roles = [Usuarios::ROLE_ADMIN];
@@ -70,10 +74,20 @@ class ExposicionesController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($idS)
     {
+        
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'modelExposicion'=> $modelExposicion = Exposiciones::findOne([
+                'siniestros_id' => $idS
+                ]),
+            'modelSiniestro'=> $modelSiniestro = Siniestros::findOne($idS),
+            'modelPersona'=> $modelPersona = Personas::findOne([
+                                            'siniestros_id' => $idS
+                                            ]),
+            'modelVehiculo'=> $modelVehiculo = Vehiculos::findOne([
+                                            'siniestros_id' => $idS
+                                            ]),
         ]);
     }
 
@@ -84,17 +98,69 @@ class ExposicionesController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Exposiciones();
+        $modelSiniestro = new Siniestros();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($modelSiniestro->load(Yii::$app->request->post()) && $modelSiniestro->save()) {
+            return $this->redirect(array('exposiciones/involucrado','id' => $modelSiniestro->id));
         }
 
         return $this->render('create', [
-            'model' => $model,
+            'modelSiniestro' => $modelSiniestro
+        ]);
+    }
+    /*
+    / Create de Involucrados
+    */
+    public function actionInvolucrado($id)
+    {
+        $modelSiniestro = Siniestros::findOne($id);
+        $modelPersona = new Personas();
+        $modelPersona->siniestros_id = $modelSiniestro->id;
+
+        if ($modelPersona->load(Yii::$app->request->post()) && $modelPersona->save()) {
+            return $this->redirect(array('exposiciones/vehiculo','id' => $modelSiniestro->id));
+        }
+        return $this->render('involucrado', [
+            'id' => $modelSiniestro = Siniestros::findOne($id),
+            'modelPersona' => $modelPersona,
         ]);
     }
 
+    /*
+    / Create de Vehiculos
+    */
+    public function actionVehiculo($id)
+    {
+        $modelSiniestro = Siniestros::findOne($id);
+        $modelVehiculo = new Vehiculos();
+        $modelVehiculo->siniestros_id = $modelSiniestro->id;
+
+        if ($modelVehiculo->load(Yii::$app->request->post()) && $modelVehiculo->save()) {
+            return $this->redirect(['exposicion','id' => $modelSiniestro->id]);
+        }
+        return $this->render('vehiculo', [
+            'modelSiniestro' => $modelSiniestro = Siniestros::findOne($id),
+            'modelVehiculo' => $modelVehiculo
+        ]);
+    }
+
+     /*
+    / Create de Exposicion
+    */
+    public function actionExposicion($id)
+    {
+        $modelSiniestro = Siniestros::findOne($id);
+        $modelExposicion = new Exposiciones();
+        $modelExposicion->siniestros_id = $modelSiniestro->id;
+
+        if ($modelExposicion->load(Yii::$app->request->post()) && $modelExposicion->save()) {
+            return $this->redirect(['view','idS' => $modelSiniestro->id]);
+        }
+        return $this->render('exposicion', [
+            'modelSiniestro' => $modelSiniestro = Siniestros::findOne($id),
+            'modelExposicion' => $modelExposicion
+        ]);
+    }
     /**
      * Updates an existing Exposiciones model.
      * If update is successful, the browser will be redirected to the 'view' page.

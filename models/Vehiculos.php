@@ -20,7 +20,7 @@ use Yii;
  * @property string $uso
  * @property string $tipo_carga
  * @property string $carga_asegurada
- * @property string $cirulacion
+ * @property string $circulacion
  * @property string $observaciones
  * @property string $desperfectos
  *
@@ -43,7 +43,7 @@ class Vehiculos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tipo', 'marca', 'modelo', 'dominio', 'nro_motor', 'nro_chasis', 'aseguradora_id', 'nro_poliza', 'tipo_transporte', 'uso', 'tipo_carga', 'carga_asegurada', 'cirulacion', 'observaciones', 'desperfectos'], 'required'],
+            [['tipo', 'marca', 'modelo', 'dominio', 'nro_motor', 'nro_chasis', 'aseguradora_id', 'nro_poliza', 'tipo_transporte', 'uso', 'tipo_carga', 'carga_asegurada', 'circulacion', 'observaciones', 'desperfectos'], 'required'],
             [['aseguradora_id'], 'integer'],
             [['tipo', 'marca', 'dominio'], 'string', 'max' => 20],
             [['modelo', 'nro_poliza', 'tipo_transporte', 'uso'], 'string', 'max' => 50],
@@ -74,7 +74,7 @@ class Vehiculos extends \yii\db\ActiveRecord
             'uso' => Yii::t('app', 'Uso'),
             'tipo_carga' => Yii::t('app', 'Tipo Carga'),
             'carga_asegurada' => Yii::t('app', 'Carga Asegurada'),
-            'circulacion' => Yii::t('app', 'Cirulacion'),
+            'circulacion' => Yii::t('app', 'Circulacion'),
             'observaciones' => Yii::t('app', 'Observaciones'),
             'desperfectos' => Yii::t('app', 'Desperfectos'),
         ];

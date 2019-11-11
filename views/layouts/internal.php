@@ -46,47 +46,28 @@ AppAsset::register($this);
                 'linkOptions' => ['style' => 'color: #fff; ']
             ],
             [
-                'label' => 'Exposiciones',
+                'label' => 'Opciones',
                 'linkOptions' => ['style' => 'color: #fff; '],
                 'items' => [
-                    ['label' => 'Cargar', 'url' => ['/exposiciones/create']],
-                    '<li class="divider"></li>',
-                    ['label' => 'Exposiciones Generadas', 'url' => ['/exposiciones/index']],
-                    '<li class="divider"></li>',
+                    '<li class="dropdown-header">Exposiciones</li>',
+                    ['label' => 'Generar Exposiciones', 'url' => ['/exposiciones/index']],
                     ['label' => 'Exposiciones Digitalizadas', 'url' => ['/exposiciones-digitalizadas/index']],
                     '<li class="divider"></li>',
-                    ['label' => 'Imprimir', 'url' => ['#']], 
-                    '<li class="divider"></li>',
-                    ['label' => 'Consultar', 'url' => ['#']],   
-               ],
-            ],
-            [
-                'label' => 'Estadísticas',
-                'linkOptions' => ['style' => 'color: #fff; '],
-                'items' => [
+                    '<li class="dropdown-header">Estadísticas</li>',
                     ['label' => 'Generar', 'url' => ['#']],
-                    '<li class="divider"></li>',
-                    ['label' => 'Consultar', 'url' => ['#']],
-                    '<li class="divider"></li>',
-                    ['label' => 'Comunicar', 'url' => ['#']],
-                   
+                    ['label' => 'Consultar', 'url' => ['#']]
                ],
             ],
             [
                 'label' => 'Ajustes',
                 'linkOptions' => ['style' => 'color: #fff; '],
                 'items' => [
-                     ['label' => 'Países', 'url' => ['/paises/index']],
-                     '<li class="divider"></li>',
-                    //  '<li class="dropdown-header">Dropdown Header</li>',
+                    '<li class="dropdown-header">Configuración</li>',
+                     ['label' => 'Países', 'url' => ['/paises/index']],                
                      ['label' => 'Provincias', 'url' => ['/provincias/index']],
+                     ['label' => 'Aseguradoras', 'url' => ['/aseguradoras/index']],                    
                      '<li class="divider"></li>',
-                    //  '<li class="dropdown-header">Dropdown Header</li>',
-                     ['label' => 'Aseguradoras', 'url' => ['/aseguradoras/index']],
-                    //  '<li class="divider"></li>',
-                    //  ['label' => 'Policías', 'url' => ['#']],
-                     '<li class="divider"></li>',
-                    //  '<li class="dropdown-header">Dropdown Header</li>',
+                     '<li class="dropdown-header">Administración</li>',
                      ['label' => 'Usuarios', 'url' => ['/usuarios/index']],
                 ],
             ],    
@@ -120,8 +101,6 @@ AppAsset::register($this);
         <?= $content ?>
     </div>
 </div>
-
-
 
 <?php $this->endBody() ?>
 </body>

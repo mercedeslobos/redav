@@ -14,7 +14,7 @@ $policiasList=ArrayHelper::map($policias,'id','matricula');
 
 <div class="exposiciones-form">
         <?php $form = ActiveForm::begin ( [ 
-                    'id' => $model->formName () ,
+                    'id' => $modelExposicion->formName () ,
                     'layout' => 'horizontal' ,
                     'class' => 'form-horizontal' ,
                     'fieldConfig' => [
@@ -24,27 +24,27 @@ $policiasList=ArrayHelper::map($policias,'id','matricula');
                         ]
             ] ] ); ?>
         <div class="row">
-            <?= $form->field($model, 'nro',[
+            <?= $form->field($modelExposicion, 'nro',[
                 'template' => '<div class="col-sm-2">{label}</div>
                                 <div class="col-sm-4">{input}{error}</div>' 
                                 ])->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'fecha',[
+            <?= $form->field($modelExposicion, 'fecha',[
                 'template' => '<div class="col-sm-1">{label}</div>
                                 <div class="col-sm-4">{input}{error}</div>' 
                                 ])->textInput() ?>
         </div>
         <div class="row">
-            <?= $form->field($model, 'policias_id', [
+            <?= $form->field($modelExposicion, 'policias_id', [
                 'template' => '<div class="col-sm-2"><label>Matrícula</label></div>
                 <div class="col-sm-4">{input}{error}</div>'
                 ])->dropDownList($policiasList, ['prompt' => 'Seleccione la Matrícula','style'=>'width:200px']);?>
-            <?= $form->field($model, 'participa_division',[
+            <?= $form->field($modelExposicion, 'participa_division',[
                 'template' => '<div class="col-sm-1">{label}</div>
                                 <div class="col-sm-4">{input}{error}</div>' 
                                 ])->textInput(['maxlength' => true]) ?>
         </div>
         <div class = "row">
-            <?= $form->field($model, 'siniestros_id',[
+            <?= $form->field($modelExposicion, 'siniestros_id',[
                 'template' => '<div class="col-sm-1">{label}</div>
                                 <div class="col-sm-4">{input}{error}</div>' 
                                 ])->textInput(['maxlength' => true]) ?>
