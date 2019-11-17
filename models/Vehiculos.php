@@ -43,7 +43,7 @@ class Vehiculos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tipo', 'marca', 'modelo', 'dominio', 'nro_motor', 'nro_chasis', 'aseguradora_id', 'nro_poliza', 'tipo_transporte', 'uso', 'tipo_carga', 'carga_asegurada', 'circulacion', 'observaciones', 'desperfectos'], 'required'],
+            [['tipo', 'marca', 'modelo', 'dominio', 'nro_motor', 'nro_chasis', 'aseguradora_id', 'nro_poliza', 'tipo_transporte', 'uso', 'circulacion', 'observaciones', 'desperfectos'], 'required'],
             [['aseguradora_id'], 'integer'],
             [['tipo', 'marca', 'dominio'], 'string', 'max' => 20],
             [['modelo', 'nro_poliza', 'tipo_transporte', 'uso'], 'string', 'max' => 50],

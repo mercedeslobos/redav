@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>'policias.matricula',
             ],  
             'participa_division',
-            'siniestros_id',
+            //'siniestros_id',
 
             ['class' => 'yii\grid\ActionColumn',
             'header' => 'Acciones',
