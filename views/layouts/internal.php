@@ -55,7 +55,7 @@ AppAsset::register($this);
                     '<li class="divider"></li>',
                     '<li class="dropdown-header">Estadísticas</li>',
                     ['label' => 'Generar', 'url' => ['#']],
-                    ['label' => 'Consultar', 'url' => ['#']]
+                    ['label' => 'Consultar', 'url' => ['consultas/estadisticas']]
                ],
             ],
             [

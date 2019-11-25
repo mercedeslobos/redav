@@ -1,9 +1,7 @@
 <?php
-
-use yii\helpers\Html;
-//use yii\widgets\ActiveForm;
 use yii\bootstrap\ActiveForm;
-use yii\jui\DatePicker;
+use yii\helpers\Html;
+ 
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Siniestros */

@@ -29,7 +29,7 @@ class ConsultasController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view','create','update','delete'],
+                        'actions' => ['index', 'view','create','update','delete','estadisticas'],
                         'roles' => ['@'],
                         // 'matchCallback' => function ($rule, $action){
                         //     $valid_roles = [Usuarios::ROLE_ADMIN];
@@ -141,5 +141,10 @@ class ConsultasController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+    public function actionEstadisticas()
+    {
+        return $this->render('estadisticas');
     }
 }
