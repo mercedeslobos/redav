@@ -19,7 +19,7 @@ $idS = Yii::$app->getRequest()->getQueryParam('idS');
 <body>
 <form>
 	 <!-- DATOS DEL SINIESTRO -->
-<table class="greyGridTable">
+<table >
   <caption>EXPOSICION POR COLISION</caption>
   <tr>
 	<td><b>FECHA DEL SINIESTRO</b></td>
@@ -108,7 +108,7 @@ $idS = Yii::$app->getRequest()->getQueryParam('idS');
 	<tr></tr>
 	<tr>
 		<td><?php echo htmlspecialchars($modelP->localidad); ?></td>
-		<td><?php echo htmlspecialchars($modelP->provincia_id); ?></td>
+		<td><?php echo htmlspecialchars($modelP->provincia->provincia); ?></td>
 	</tr>
 	<tr></tr>
 	<tr>
@@ -163,7 +163,7 @@ $idS = Yii::$app->getRequest()->getQueryParam('idS');
 	</tr>
 	<tr></tr>
 	<tr>
-		<td><?php echo htmlspecialchars($modelV->aseguradora_id); ?></td>
+		<td><?php echo htmlspecialchars($modelV->aseguradora->nombre); ?></td>
 		<td><?php echo htmlspecialchars($modelV->nro_poliza); ?></td>
 	</tr>
 </table>
@@ -246,7 +246,7 @@ $idS = Yii::$app->getRequest()->getQueryParam('idS');
 	<tr>
 		<td></td>
 		<td></td>
-		<td><?php echo htmlspecialchars($modelExposicion->policias_id); ?></td>
+		<td><?php echo htmlspecialchars($modelExposicion->policias->matricula); ?></td>
 		<td></td>
 		<td></td><td><b> </b></td>
 		<td><?php echo htmlspecialchars($modelExposicion->nro); ?></td>

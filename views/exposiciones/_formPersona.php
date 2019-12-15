@@ -11,8 +11,9 @@ use app\models\Policias;
 /* @var $this yii\web\View */
 /* @var $model app\models\Personas */
 /* @var $form yii\widgets\ActiveForm */
-$tipo = [ 0=>'DNI', 1=>'DU',  2=>'LE', 3=>'CI', 4=>'RG', 5=>'CC', 6=>'CIC/CI', 7=>'DUI', 8=>'DPI', 9=>'TDI', 10=>'CURP', 11=>'CIP', 12=>'OTRO'];
-$edo_civil = [ 0=>'SOLTERO/A', 1=>'CASADO/A', 2=>'VIUDO/A', 3=>'DIVORCIADO/A'];
+$tipo = [ 'DNI'=>'DNI', 'DU'=>'DU',  'LE'=>'LE', 'CI'=>'CI', 'RG'=>'RG', 'CC'=>'CC', 'CIC/CI'=>'CIC/CI', 'DUI'=>'DUI', 'DPI'=>'DPI', 'TDI'=>'TDI', 'CURP'=>'CURP', 'CIP'=>'CIP', 'OTRO'=>'OTRO'];
+$edo_civil = [ 'SOLTERO/A'=>'SOLTERO/A', 'CASADO/A'=>'CASADO/A', 'VIUDO/A'=>'VIUDO/A', 'DIVORCIADO/A'=>'DIVORCIADO/A'];
+$licencia = [ 'SI'=>'SI', 'NO'=>'NO'];
 $provincias=Provincias::find()->all();
 $provList=ArrayHelper::map($provincias,'id','provincia');
 ?>
@@ -53,7 +54,8 @@ $provList=ArrayHelper::map($provincias,'id','provincia');
         <?= $form->field($modelPersona, 'edo_civil', ['template' => '<div class="col-sm-2">{label}</div><div class="col-sm-4">{input}{error}</div>'])->dropDownList($edo_civil, ['prompt' => 'Seleccione Uno','style'=>'width:200px'])?>
     </div>
     <div class="row">
-        <?= $form->field($modelPersona, 'razon_social',['template' => '<div class="col-sm-2">{label}</div><div class="col-sm-6">{input}{error}</div>' ])->textInput(['maxlength' => true]) ?>
+        <?= $form->field($modelPersona, 'razon_social',['template' => '<div class="col-sm-2">{label}</div><div class="col-sm-4">{input}{error}</div>' ])->textInput(['maxlength' => true]) ?>
+        <?= $form->field($modelPersona, 'licencia_nro',['template' => '<div class="col-sm-2">{label}</div><div class="col-sm-4">{input}{error}</div>' ])->dropDownList($licencia, ['prompt' => 'Seleccione Uno','style'=>'width:200px'])?>
        
     </div>
 

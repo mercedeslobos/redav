@@ -113,7 +113,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="form-group col-md-6">
       <label for="inputEmail4">PROVINCIA</label>
       <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelP->provincia_id); ?>"/>
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelP->provincia->provincia); ?>"/>
     </div>
   </div>
   <div class="form-row">
@@ -180,7 +180,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="form-group col-md-6">
       <label for="inputEmail4">ASEGURADORA</label>
       <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->aseguradora_id); ?>"/>
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->aseguradora->nombre); ?>"/>
     </div>
     <div class="form-group col-md-6">
       <label for="inputEmail4">Nro. DE POLIZA</label>
@@ -245,7 +245,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="form-group col-md-6">
       <label for="inputEmail4">POLICIA</label>
       <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelExposicion->policias_id); ?>"/>
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelExposicion->policias->matricula); ?>"/>
     </div>
     <div class="form-group col-md-6">
       <label for="inputEmail4">Nro EXP.</label>

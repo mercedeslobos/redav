@@ -245,7 +245,7 @@ class ExposicionesController extends Controller
         'destination' => Pdf::DEST_BROWSER,
         'content' => $this->renderPartial('impresion'),
         'format' => Pdf::FORMAT_LEGAL,
-        'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
+        // 'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
         'options' => [
             // any mpdf options you wish to set
         ],
@@ -253,10 +253,8 @@ class ExposicionesController extends Controller
             'SetTitle' => 'Exposición - ReDAV',
             'SetSubject' => 'Exposición generada automáticamente por sistema',
             'SetHeader' => ['Exposición por colisión||Generada: ' . date("r")],
-            'SetFooter' => ['|Page {PAGENO}|'],
+            'SetFooter' => ['|Página {PAGENO}|'],
             'SetAuthor' => 'ReDAV',
-            // 'SetCreator' => 'Kartik Visweswaran',
-            // 'SetKeywords' => 'Krajee, Yii2, Export, PDF, MPDF, Output, Privacy, Policy, yii2-mpdf',
         ]
     ]);
     return $pdf->render();
