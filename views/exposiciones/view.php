@@ -20,7 +20,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $modelExposicion->siniestros_id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $modelExposicion->siniestros_id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -29,11 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
         <?= Html::a('<i class="fa far fa-hand-point-up"></i> Imprimir Exposición', ['/exposiciones/impresion','idS' => $modelSiniestro->id], [
-    'class'=>'btn btn-danger', 
-    'target'=>'_blank', 
-    'data-toggle'=>'tooltip', 
-    'title'=>'Will open the generated PDF file in a new window'
-]);?>
+            'class'=>'btn btn-info', 
+            'target'=>'_blank', 
+            'data-toggle'=>'tooltip', 
+            'title'=>'Will open the generated PDF file in a new window'
+        ]);?>
     </p>
 </div>
 

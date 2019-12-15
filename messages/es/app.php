@@ -121,6 +121,7 @@ return [
     'verifyCode'=>'Código de Verificación',
     'Submit'=>'Enviar',
     'Username'=>'Usuario',
+    'username'=>'Usuario',
     'password'=>'Clave',
     'Role' => 'Rol',
     'rememberMe'=>'Recordarme',

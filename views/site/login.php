@@ -28,9 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'password')->passwordInput()->label(Yii::t('app', 'password'))  ?>
 
-        <?= $form->field($model, 'rememberMe')->checkbox([
+        <!-- <?= $form->field($model, 'rememberMe')->checkbox([
             'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ])->label(Yii::t('app', 'rememberMe')) ?>
+        ])->label(Yii::t('app', 'rememberMe')) ?> -->
         <?= $form->field($model, 'captcha')->widget(\yii\captcha\Captcha::classname(), [
                       // configure additional widget properties here
                   ]) ?>

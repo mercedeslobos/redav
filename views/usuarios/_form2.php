@@ -11,8 +11,8 @@ use app\models\Policias;
 /* @var $this yii\web\View */
 /* @var $model app\models\Personas */
 /* @var $form yii\widgets\ActiveForm */
-$tipo = [ 0=>'DNI', 1=>'DU',  2=>'LE', 3=>'CI', 4=>'RG', 5=>'CC', 6=>'CIC/CI', 7=>'DUI', 8=>'DPI', 9=>'TDI', 10=>'CURP', 11=>'CIP', 12=>'OTRO'];
-$edo_civil = [ 0=>'SOLTERO/A', 1=>'CASADO/A', 2=>'VIUDO/A', 3=>'DIVORCIADO/A'];
+$tipo = [ 'DNI'=>'DNI', 'DU'=>'DU',  'LE'=>'LE', 'CI'=>'CI', 'RG'=>'RG', 'CC'=>'CC', 'CIC/CI'=>'CIC/CI', 'DUI'=>'DUI', 'DPI'=>'DPI', 'TDI'=>'TDI', 'CURP'=>'CURP', 'CIP'=>'CIP', 'OTRO'=>'OTRO'];
+$edo_civil = [ 'SOLTERO/A'=>'SOLTERO/A', 'CASADO/A'=>'CASADO/A', 'VIUDO/A'=>'VIUDO/A', 'DIVORCIAD.'=>'DIVORCIADO/A'];
 $provincias=Provincias::find()->all();
 $provList=ArrayHelper::map($provincias,'id','provincia');
 ?>

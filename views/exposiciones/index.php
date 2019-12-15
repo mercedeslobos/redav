@@ -38,10 +38,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn',
             'header' => 'Acciones',
             'contentOptions' => ['style' => 'width:100px; white-space: normal;'],
-            'template' => '{print} {view} {update} {delete}',
+            'template' => '{print} {view} {delete}',
             'buttons' => [
-                'print' => function ($url) {
-                    return Html::a('<span class="glyphicon glyphicon-print"></span>', $url, ['title' => 'Imprimir']);
+                'print' => function ($url,$model) {
+                    return Html::a('<span class="glyphicon glyphicon-print"></span>',['exposiciones/impresion','idS'=>$model->siniestros_id], ['title' => 'Imprimir']);
                     },
                 'view' => function ($url,$model) {
                         return Html::a('<span class="glyphicon glyphicon-eye-open"></span>',['exposiciones/view','idS'=>$model->siniestros_id], ['title' => 'Ver']);
