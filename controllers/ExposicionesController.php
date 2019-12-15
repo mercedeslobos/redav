@@ -14,6 +14,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use app\config\AccessRule;
+use kartik\mpdf\Pdf;
 
 
 /**
@@ -34,7 +35,8 @@ class ExposicionesController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view','create','update','delete','involucrado','vehiculo', 'exposicion'],
+                        'actions' => ['index', 'view','create','update','delete','involucrado',
+                        'vehiculo', 'exposicion','impresion'],
                         'roles' => ['@'],
                         // 'matchCallback' => function ($rule, $action){
                         //     $valid_roles = [Usuarios::ROLE_ADMIN];
@@ -136,6 +138,7 @@ class ExposicionesController extends Controller
         $modelVehiculo->siniestros_id = $modelSiniestro->id;
 
         if ($modelVehiculo->load(Yii::$app->request->post()) && $modelVehiculo->save()) {
+            // return $this->refresh();
             return $this->redirect(['exposicion','id' => $modelSiniestro->id]);
         }
         return $this->render('vehiculo', [
@@ -170,14 +173,26 @@ class ExposicionesController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        
+        // $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        // if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        //     return $this->redirect(['view', 'id' => $model->id]);
+        // }
+       
+
+        // return $this->render('update', [
+        //     'model' => $model,
+        // ]);
+
+        $modelSiniestro = Siniestros::findOne($id);
+        
+        if ($modelSiniestro->load(Yii::$app->request->post()) && $modelSiniestro->save()) {
+            return $this->redirect(array('exposiciones/involucrado','id' => $modelSiniestro->id));
         }
 
-        return $this->render('update', [
-            'model' => $model,
+        return $this->render('create', [
+            'modelSiniestro' => $modelSiniestro
         ]);
     }
 
@@ -214,5 +229,35 @@ class ExposicionesController extends Controller
     public function actionInicio()
     {
         return $this->render('inicio');
+    }
+
+    // Privacy statement output demo
+    public function actionImpresion($idS) {
+
+    $modelExposicion = Exposiciones::findOne(['siniestros_id' => $idS]);
+    $modelSiniestro = Siniestros::findOne($idS);
+    $modelPersona = Personas::findOne(['siniestros_id' => $idS]);
+    $modelVehiculo = Vehiculos::findOne(['siniestros_id' => $idS]);
+        
+    Yii::$app->response->format = \yii\web\Response::FORMAT_RAW;
+    $pdf = new Pdf([
+        'mode' => Pdf::MODE_CORE, // leaner size using standard fonts
+        'destination' => Pdf::DEST_BROWSER,
+        'content' => $this->renderPartial('impresion'),
+        'format' => Pdf::FORMAT_LEGAL,
+        'options' => [
+            // any mpdf options you wish to set
+        ],
+        'methods' => [
+            'SetTitle' => 'Exposición - ReDAV',
+            'SetSubject' => 'Exposición generada automáticamente por sistema',
+            'SetHeader' => ['Exposición por colisión||Generada: ' . date("r")],
+            'SetFooter' => ['|Page {PAGENO}|'],
+            'SetAuthor' => 'ReDAV',
+            // 'SetCreator' => 'Kartik Visweswaran',
+            // 'SetKeywords' => 'Krajee, Yii2, Export, PDF, MPDF, Output, Privacy, Policy, yii2-mpdf',
+        ]
+    ]);
+    return $pdf->render();
     }
 }

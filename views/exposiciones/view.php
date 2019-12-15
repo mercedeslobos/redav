@@ -2,7 +2,6 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
 use yii\jui\DatePicker;
 use yii\helpers\ArrayHelper;
 use app\models\Provincias;
@@ -10,7 +9,7 @@ use app\models\Policias;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Exposiciones */
-$apellidoynombre = $modelPersona->apellido.' '.$modelPersona->nombre;
+
 $this->title = $modelExposicion->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Exposiciones'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -21,46 +20,71 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $modelExposicion->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $modelExposicion->id], [
+        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $modelExposicion->siniestros_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $modelExposicion->siniestros_id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
             ],
         ]) ?>
+        <?= Html::a('<i class="fa far fa-hand-point-up"></i> Imprimir Exposición', ['/exposiciones/impresion','idS' => $modelSiniestro->id], [
+    'class'=>'btn btn-danger', 
+    'target'=>'_blank', 
+    'data-toggle'=>'tooltip', 
+    'title'=>'Will open the generated PDF file in a new window'
+]);?>
     </p>
 </div>
-    
+<?php echo htmlspecialchars($modelPersona->apellido.' '.$modelPersona->nombre); ?>
 
+<div class="container-fluid" style="background-color:#aaa">
+<form>
+  <div class="form-row">
+  <!-- DATOS DEL SINIESTRO -->
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">FECHA DEL SINIESTRO</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" id="inputEmail4" value="<?php echo htmlspecialchars($modelSiniestro->fecha); ?>"/>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">HORA DEL HECHO</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" id="inputPassword4" value="<?php echo htmlspecialchars($modelSiniestro->hora); ?>" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">LUGAR DEL SUCESO</label>
+    <input type="text" class="form-control"  readonly class="form-control-plaintext" id="inputAddress" value="<?php echo htmlspecialchars($modelSiniestro->lugar); ?>" />
+  </div>
+  <!-- END DATOS DEL SINIESTRO -->
+<!-- DATOS DEL CONDUCTOR -->
+  <div class="form-group">
+    <label for="inputAddress2">Address 2</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">City</label>
+      <input type="text" class="form-control" id="inputCity">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">State</label>
+      <select id="inputState" class="form-control">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control" id="inputZip">
+    </div>
+  </div>
+</form>
 
+</div>
 
 <?php $form = ActiveForm::begin(); ?>
 <div class="container-fluid" style="background-color:#aaa">
-    <!-- DATOS DEL SINIESTRO -->
-    <div class="row">
-        <div class="col-sm">
-             <?= $form->field($modelSiniestro, 'fecha', [
-                'template' => '<div class="col-sm-2">FECHA DEL SINIESTRO</div>
-                               <div class="col-sm-4">{input}</div>' 
-                                ])->textInput(['maxlength' => true,'disabled' => true]) ?>
-            <?= $form->field($modelSiniestro, 'hora', [
-                'template' => '<div class="col-sm-2">HORA DEL HECHO</div>
-                               <div class="col-sm-4">{input}</div>' 
-                                ])->textInput(['maxlength' => true,'disabled' => true]) ?>
-      
-        </div>     
-    </div> 
-    <div class="row">
-        <div class="col-sm">
-            <?= $form->field($modelSiniestro, 'lugar', [
-                    'template' => '<div class="col-sm-2">LUGAR DEL SUCESO</div>
-                                <div class="col-sm-10">{input}{error}</div>' 
-                                    ])->textInput(['maxlength' => true,'disabled' => true]) ?>
-        </div>
-    </div>
-    <!-- END DATOS DEL SINIESTRO -->
-
+    
     <!-- DATOS DEL CONDUCTOR -->
     <div class="row">
         <div class="col-sm">

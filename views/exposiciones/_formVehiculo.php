@@ -10,7 +10,10 @@ use app\models\Aseguradoras;
 
 $aseguradoras = Aseguradoras::find()->all();
 $aseguradorasList = ArrayHelper::map($aseguradoras,'id','nombre');
-$cargaAseg = [ 0=>'SI', 1=>'NO'];
+$cargaAseg = [ 'SI'=>'SI', 'NO'=>'NO'];
+$tipoTransporte = [ 'PUBLICO' =>'PUBLICO', 'ESPECIAL' =>'ESPECIAL'];
+$usos = [ 'OFICIAL' => 'OFICIAL','PARTICULAR' => 'PARTICULAR',
+        'COMERCIAL' => 'COMERCIAL', 'DE CARGA' => 'DE CARGA', 'EMERGENCIA' => 'EMERGENCIA']
 ?>
 
 <div class="vehiculos-form">
@@ -78,13 +81,13 @@ $cargaAseg = [ 0=>'SI', 1=>'NO'];
                 <?= $form->field($modelVehiculo, 'tipo_transporte', [
                     'template' => '<div class="col-sm-1">{label}</div>
                                    <div class="col-sm-3">{input}{error}</div>'
-                                ])->textInput(['maxlength' => true]) ?>
+                                ])->dropDownList($tipoTransporte, ['prompt' => 'Seleccione el Tipo de Transporte']);?>
             </div>
             <div class="col-sm">
                 <?= $form->field($modelVehiculo, 'uso', [
                     'template' => '<div class="col-sm-1">{label}</div>
                                    <div class="col-sm-3">{input}{error}</div>'
-                                ])->textInput(['maxlength' => true]) ?>
+                                ])->dropDownList($usos, ['prompt' => 'Seleccione el Uso']); ?>
             </div>  
         </div>
         <div class="row">

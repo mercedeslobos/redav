@@ -33,7 +33,7 @@ AppAsset::register($this);
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
-            'style' => 'background-color: #0D94EA; color: #fff !important;',
+            'style' => 'background-color: #0D94EA; color: #27038a !important;',
         ],
     ]);
     echo Nav::widget([
@@ -50,7 +50,7 @@ AppAsset::register($this);
                 'linkOptions' => ['style' => 'color: #fff; '],
                 'items' => [
                     '<li class="dropdown-header">Exposiciones</li>',
-                    ['label' => 'Generar Exposiciones', 'url' => ['/exposiciones/index']],
+                    ['label' => 'Exposiciones', 'url' => ['/exposiciones/index']],
                     ['label' => 'Exposiciones Digitalizadas', 'url' => ['/exposiciones-digitalizadas/index']],
                     '<li class="divider"></li>',
                     '<li class="dropdown-header">Estadísticas</li>',

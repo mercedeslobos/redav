@@ -12,8 +12,12 @@ use yii\jui\DatePicker;
 
 $policias = Policias::find()->all();
 $policiasList = ArrayHelper::map($policias,'id','matricula');
-$participaDivision = [ 0=>'SI', 1=>'NO'];
+$participaDivision = [ 'SI'=>'SI', 'NO'=>'NO'];
 ?>
+<p>
+        <?= Html::a('Cargar Otros Involucrados', ['involucrado', 'id' => $modelExposicion->siniestros_id], ['class' => 'btn btn-primary']) ?>
+     
+    </p>
 
 <div class="exposiciones-form">
         <?php $form = ActiveForm::begin ( [ 
