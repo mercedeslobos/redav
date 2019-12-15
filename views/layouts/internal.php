@@ -54,7 +54,6 @@ AppAsset::register($this);
                     ['label' => 'Exposiciones Digitalizadas', 'url' => ['/exposiciones-digitalizadas/index']],
                     '<li class="divider"></li>',
                     '<li class="dropdown-header">Estadísticas</li>',
-                    ['label' => 'Generar', 'url' => ['#']],
                     ['label' => 'Consultar', 'url' => ['consultas/estadisticas']]
                ],
             ],

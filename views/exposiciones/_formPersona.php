@@ -41,8 +41,8 @@ $provList=ArrayHelper::map($provincias,'id','provincia');
     </div>
 
     <div class="row">
-        <?= $form->field($modelPersona, 'edad',['template' => '<div class="col-sm-2">{label}</div><div class="col-sm-1">{input}{error}</div>' ])->textInput(['maxlength' => true,'style'=>'width:100px']) ?>
-        <?php echo $form->field($modelPersona,'fecha_nacimiento',['template' => '<div class="col-sm-1">{label}</div><div class="col-sm-2">{input}{error}</div>' ])->
+        <!-- <?= $form->field($modelPersona, 'edad',['template' => '<div class="col-sm-2">{label}</div><div class="col-sm-1">{input}{error}</div>' ])->textInput(['maxlength' => true,'style'=>'width:100px']) ?> -->
+        <?php echo $form->field($modelPersona,'fecha_nacimiento',['template' => '<div class="col-sm-2">{label}</div><div class="col-sm-4">{input}{error}</div>' ])->
         widget(DatePicker::className(),[
             'dateFormat' => 'yyyy-MM-dd',
             'clientOptions' => [
@@ -51,6 +51,10 @@ $provList=ArrayHelper::map($provincias,'id','provincia');
                 'options' => ['class' => 'form-control', 'style' => 'width:100%']
         ]) ?>
         <?= $form->field($modelPersona, 'edo_civil', ['template' => '<div class="col-sm-2">{label}</div><div class="col-sm-4">{input}{error}</div>'])->dropDownList($edo_civil, ['prompt' => 'Seleccione Uno','style'=>'width:200px'])?>
+    </div>
+    <div class="row">
+        <?= $form->field($modelPersona, 'razon_social',['template' => '<div class="col-sm-2">{label}</div><div class="col-sm-6">{input}{error}</div>' ])->textInput(['maxlength' => true]) ?>
+       
     </div>
 
     <div class="row">

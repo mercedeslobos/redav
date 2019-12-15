@@ -245,6 +245,7 @@ class ExposicionesController extends Controller
         'destination' => Pdf::DEST_BROWSER,
         'content' => $this->renderPartial('impresion'),
         'format' => Pdf::FORMAT_LEGAL,
+        'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
         'options' => [
             // any mpdf options you wish to set
         ],

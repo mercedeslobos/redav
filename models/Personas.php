@@ -41,7 +41,7 @@ class Personas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tipo_documento','documento', 'nombre', 'apellido', 'edad', 'fecha_nacimiento', 'edo_civil', 'direccion', 'localidad', 'provincia_id', 'nacionalidad'], 'required'],
+            [['tipo_documento','documento', 'nombre', 'apellido', 'fecha_nacimiento', 'edo_civil', 'direccion', 'localidad', 'provincia_id', 'nacionalidad'], 'required'],
             [['provincia_id'], 'integer'],
             [['tipo_documento', 'fecha_nacimiento', 'edo_civil'], 'string', 'max' => 10],
             [['documento','licencia_nro'], 'string', 'max' => 20],

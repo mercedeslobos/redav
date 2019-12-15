@@ -12,228 +12,249 @@ $idS = Yii::$app->getRequest()->getQueryParam('idS');
     $modelPersona = Personas::findAll(['siniestros_id' => $idS]);
 	$modelVehiculo = Vehiculos::findAll(['siniestros_id' => $idS]);
 	?>
-<div class="container-fluid" >
+<html>
+<head>
+
+</head>
+<body>
 <form>
-  <!-- DATOS DEL SINIESTRO -->
-  <div class="form-row">
-    <div class="form-group col-md-6">
-	  <label for="inputEmail4">FECHA DEL SINIESTRO</label>
-	  <?php echo htmlspecialchars($modelSiniestro->fecha); ?>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelSiniestro->fecha); ?>"/>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">HORA DEL HECHO</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputPassword4" value="<?php echo htmlspecialchars($modelSiniestro->hora); ?>"/>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <label for="inputAddress">LUGAR DEL SUCESO</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputAddress" value="<?php echo htmlspecialchars($modelSiniestro->lugar); ?>"/>
-    </div>
-  </div>
-  <!-- END DATOS DEL SINIESTRO -->
+	 <!-- DATOS DEL SINIESTRO -->
+<table class="greyGridTable">
+  <caption>EXPOSICION POR COLISION</caption>
+  <tr>
+	<td><b>FECHA DEL SINIESTRO</b></td>
+	<td></td>
+	<td><b>HORA DEL HECHO</b></td>
+  </tr>
+  <tr></tr>
+  <tr>
+	  <td><?php echo htmlspecialchars($modelSiniestro->fecha); ?></td>
+	  <td></td>
+    <td><?php echo htmlspecialchars($modelSiniestro->hora); ?></td>
+  </tr>
+  <tr></tr>
+  <tr>
+	  <td><b>LUGAR DEL SUCESO</b></td>
+	  <td></td>
+    <td></td>
+  </tr>
+  <tr></tr>
+  <tr>
+	  <td><?php echo htmlspecialchars($modelSiniestro->lugar); ?></td>
+	  <td></td>
+    <td></td>
+  </tr>
+</table>
+   <!-- END DATOS DEL SINIESTRO -->
+
   <?php for($i=0, $count = count($modelPersona);$i<$count;$i++) {
       $modelP = $modelPersona[$i];
       $modelV = $modelVehiculo[$i];?>
   <!-- DATOS DEL CONDUCTOR -->
-  <div class="form-row">
-  <div class="form-group col-md-12">
-  <label >INVOLUCRADO</label>
-  </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <label for="nya">APELLIDO Y NOMBRE</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-      id="nya" value="<?php echo htmlspecialchars($modelP->apellido.', '.$modelP->nombre); ?>"/>
-    </div>
-  </div>
 
-  <div class="form-row">
-    <div class="form-group col-md-3">
-      <label for="nya">TIPO</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-      id="nya" value="<?php echo htmlspecialchars($modelP->tipo_documento); ?>"/>
-    </div>
-    <div class="form-group col-md-3">
-      <label for="nya">NRO</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-      id="nya" value="<?php echo htmlspecialchars($modelP->documento); ?>"/>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <label for="inputAddress">RAZON SOCIAL</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputAddress" value="<?php echo htmlspecialchars($modelP->razon_social); ?>"/>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <label for="inputAddress">DOMICILIO</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputAddress" value="<?php echo htmlspecialchars($modelP->direccion); ?>"/>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">LOCALIDAD</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelP->localidad); ?>"/>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">PROVINCIA</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelP->provincia_id); ?>"/>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">ESTADO CIVIL</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelP->edo_civil); ?>"/>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">NACIONALIDAD</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelP->nacionalidad); ?>"/>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">FECHA DE NACIMIENTO</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelP->fecha_nacimiento); ?>"/>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">POSEE LICENCIA DE CONDUCIR?</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelP->licencia_nro); ?>"/>
-    </div>
-  </div>
+  
+  <table>
+	<tr></tr>
+	<tr>
+		<th>INVOLUCRADO</th>
+	</tr>
+	<tr>
+		<td><b>APELLIDO Y NOMBRE</b></td>
+	</tr>
+  <tr></tr>
+  <tr>
+	<td><?php echo htmlspecialchars($modelP->apellido.', '.$modelP->nombre); ?></td>
+  </tr>
+  <tr></tr>
+</table>
+<table>
+	<tr></tr>
+	<tr>
+		<td><b>TIPO DOC.<b></td>
+		<td></td>
+		<td><b>NRO DOC.</b></td>
+	</tr>
+  <tr></tr>
+  <tr>
+	<td><?php echo htmlspecialchars($modelP->tipo_documento); ?></td>
+	<td></td>
+	<td><?php echo htmlspecialchars($modelP->documento); ?></td>
+  </tr>
+  <tr></tr>
+</table>
+<table>
+	<tr></tr>
+	<tr>
+		<td><b>RAZON SOCIAL</b></td>
+	</tr>
+	<tr></tr>
+	<tr>
+		<td><?php echo htmlspecialchars($modelP->razon_social); ?></td>
+	</tr>
+	<tr></tr>
+	<tr>
+		<td><b>DOMICILIO</b></td>
+	</tr>
+	<tr>
+		<td><?php echo htmlspecialchars($modelP->direccion); ?></td>
+	</tr>
+</table>
+<table>
+	<tr></tr>
+	<tr>
+		<td><b>LOCALIDAD</b></td>
+		<td><b>PROVINCIA</b></td>
+	</tr>
+	<tr></tr>
+	<tr>
+		<td><?php echo htmlspecialchars($modelP->localidad); ?></td>
+		<td><?php echo htmlspecialchars($modelP->provincia_id); ?></td>
+	</tr>
+	<tr></tr>
+	<tr>
+		<td><b>ESTADO CIVIL</b></td>
+		<td><b>NACIONALIDAD</b></td>
+	</tr>
+	<tr>
+		<td><?php echo htmlspecialchars($modelP->edo_civil); ?></td>
+		<td><?php echo htmlspecialchars($modelP->nacionalidad); ?></td>
+	</tr>
+	<tr>
+		<td><b>FECHA DE NACIMIENTO</b></td>
+		<td><b>POSEE LICENCIA DE CONDUCIR?</b></td>
+	</tr>
+	<tr>
+		<td><?php echo htmlspecialchars($modelP->fecha_nacimiento); ?></td>
+		<td><?php echo htmlspecialchars($modelP->licencia_nro); ?></td>
+	</tr>
+</table>
   <!-- END DATOS DEL CONDUCTOR -->
   <!-- DATOS DEL VEHICULO -->
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="inputEmail4">TIPO</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->tipo); ?>"/>
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputEmail4">MARCA</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->marca); ?>"/>
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputEmail4">MODELO</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->modelo); ?>"/>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="inputEmail4">DOMINIO</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->dominio); ?>"/>
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputEmail4">MOTOR Nro.</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->nro_motor); ?>"/>
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputEmail4">CHASIS Nro.</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->nro_chasis); ?>"/>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">ASEGURADORA</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->aseguradora_id); ?>"/>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Nro. DE POLIZA</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->nro_poliza); ?>"/>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-3">
-      <label for="inputEmail4">T. DE TRANSPORTE</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->tipo_transporte); ?>"/>
-    </div>
-    <div class="form-group col-md-3">
-      <label for="inputEmail4">USOS</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->uso); ?>"/>
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputEmail4">TIPO DE CARGA</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->tipo_carga); ?>"/>
-    </div>
-    <div class="form-group col-md-2">
-      <label for="inputEmail4">CARGA ASEGURADA</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->carga_asegurada); ?>"/>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <label for="inputAddress">CIRCULACION</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputAddress" value="<?php echo htmlspecialchars($modelV->circulacion); ?>"/>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <label for="inputAddress">OBSERVACIONES</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputAddress" value="<?php echo htmlspecialchars($modelV->observaciones); ?>"/>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <label for="inputAddress">DESPERFECTOS</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputAddress" value="<?php echo htmlspecialchars($modelV->desperfectos); ?>"/>
-    </div>
-  </div>
-
+  <table>
+	<tr></tr>
+	<tr>
+		<td><b>TIPO</b></td>
+		<td><b>MARCA</b></td>
+		<td><b>MODELO</b></td>
+	</tr>
+	<tr></tr>
+	<tr>
+		<td><?php echo htmlspecialchars($modelV->tipo); ?></td>
+		<td><?php echo htmlspecialchars($modelV->marca); ?></td>
+		<td><?php echo htmlspecialchars($modelV->modelo); ?></td>
+	</tr>
+	<tr></tr>
+	<tr>
+		<td><b>DOMINIO<b></td>
+		<td><b>MOTOR Nro.</b></td>
+		<td><b>CHASIS Nro.</b></td>
+	</tr>
+	<tr>
+		<td><?php echo htmlspecialchars($modelV->dominio); ?></td>
+		<td><?php echo htmlspecialchars($modelV->nro_motor); ?></td>
+		<td><?php echo htmlspecialchars($modelV->nro_chasis); ?></td>
+	</tr>
+</table>
+<table>
+	<tr></tr>
+	<tr>
+		<td><b>ASEGURADORA</b></td>
+		<td><b>Nro. DE POLIZA</b></td>
+	</tr>
+	<tr></tr>
+	<tr>
+		<td><?php echo htmlspecialchars($modelV->aseguradora_id); ?></td>
+		<td><?php echo htmlspecialchars($modelV->nro_poliza); ?></td>
+	</tr>
+</table>
+<table>
+	<tr></tr>
+	<tr>
+		<td><b>T. DE TRANSPORTE</b></td>
+		<td><b>USOS</b></td>
+		<td><b>TIPO DE CARGA</b></td>
+		<td><b>CARGA ASEGURADA</b></td>
+	</tr>
+	<tr></tr>
+	<tr>
+		<td><?php echo htmlspecialchars($modelV->tipo_transporte); ?></td>
+		<td><?php echo htmlspecialchars($modelV->uso); ?></td>
+		<td><?php echo htmlspecialchars($modelV->tipo_carga); ?></td>
+		<td><?php echo htmlspecialchars($modelV->carga_asegurada); ?></td>
+	</tr>
+</table>
+<table>
+	<tr></tr>
+	<tr>
+		<td><b>CIRCULACION</b></td>
+	</tr>
+	<tr></tr>
+	<tr>
+		<td><?php echo htmlspecialchars($modelV->circulacion); ?></td>
+	</tr>
+	<tr>
+		<td><b>OBSERVACIONES</b></td>
+	</tr>
+	<tr></tr>
+	<tr>
+		<td><?php echo htmlspecialchars($modelV->observaciones); ?></td>
+	</tr>
+	<tr>
+		<td><b>DESPERFECTOS</b></td>
+	</tr>
+	<tr></tr>
+	<tr>
+		<td><?php echo htmlspecialchars($modelV->desperfectos); ?></td>
+	</tr>
+</table>
   <!-- END DATOS DEL VEHICULO -->
   <?php } ?>
 
   <!-- PIE DEL FORMULARIO -->
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">FECHA</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-      id="inputEmail4" value="<?php echo htmlspecialchars($modelExposicion->fecha); ?>"/>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">POLICIA</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelExposicion->policias_id); ?>"/>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Nro EXP.</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputEmail4" value="<?php echo htmlspecialchars($modelExposicion->nro); ?>"/>
-    </div>
-    <div class="form-group col-md-3">
-      <label for="inputZip">DIVISION DE ACCIDENTES VIALES</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" 
-            id="inputZip" value="<?php echo htmlspecialchars($modelExposicion->participa_division); ?>" />
-      <label for="inputZip">HA PARTICIPADO DEL SINIESTRO</label>
-    </div>
-  </div>
+  <br><br><br>
+  <table>
+	<tr>
+		<td><b>DIVISION DE ACCIDENTES VIALES</b></td>
+		<td><?php echo htmlspecialchars($modelExposicion->participa_division);?></td>
+		<td><b>HA PARTICIPADO DEL SINIESTRO</b></td>
+		<td></td>
+		<td></td><td></td>
+		<td><b>FECHA</b></td>
+	</tr>
+	<tr></tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td><td><b> </b></td>
+		<td><?php echo htmlspecialchars($modelExposicion->fecha); ?></td>
+	</tr>
+	<tr></tr>
+
+	</table>
+	<br><br>
+	<table>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><b>POLICIA</b></td>
+		<td></td>
+		<td></td><td><b> </b></td>
+		<td><b>Nro EXP.</b></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><?php echo htmlspecialchars($modelExposicion->policias_id); ?></td>
+		<td></td>
+		<td></td><td><b> </b></td>
+		<td><?php echo htmlspecialchars($modelExposicion->nro); ?></td>
+	</tr>
+</table>
+
   <!-- END PIE DEL FORMULARIO -->
     
 </form>
+  </body>
+  </html>
