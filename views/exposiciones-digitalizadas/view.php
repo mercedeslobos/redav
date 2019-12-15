@@ -38,18 +38,18 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
     <?php 
-                            Modal::begin([
-                                'headerOptions' => ['<h2>Pdf</h2>'],
-                                'toggleButton' => ['label' => 'Ver Archivo Cargado'],
-                                'size' => Modal::SIZE_LARGE,
-                                
-                                ]);
-                                echo \lesha724\documentviewer\ViewerJsDocumentViewer::widget([
-                                    'url' => Url::base().'/documentos/digitalizadas/'.$model->archivo, 
-                                    'width'=>'100%',
-                                    'height'=>'350px'
-                                    ]);                
-                            Modal::end();
-                        ?>
+            Modal::begin([
+                'headerOptions' => ['<h2>Pdf</h2>'],
+                'toggleButton' => ['label' => 'Ver Archivo Cargado'],
+                'size' => Modal::SIZE_LARGE,
+                
+                ]);
+                echo \lesha724\documentviewer\ViewerJsDocumentViewer::widget([
+                    'url' => Url::base().'/documentos/digitalizadas/'.$model->archivo, 
+                    'width'=>'100%',
+                    'height'=>'350px'
+                    ]);                
+            Modal::end();
+        ?>
 
 </div>

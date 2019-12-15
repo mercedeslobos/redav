@@ -15,9 +15,8 @@ $policiasList = ArrayHelper::map($policias,'id','matricula');
 $participaDivision = [ 'SI'=>'SI', 'NO'=>'NO'];
 ?>
 <p>
-        <?= Html::a('Cargar Otros Involucrados', ['involucrado', 'id' => $modelExposicion->siniestros_id], ['class' => 'btn btn-primary']) ?>
-     
-    </p>
+    <?= Html::a('Cargar Otros Involucrados', ['involucrado', 'id' => $modelExposicion->siniestros_id], ['class' => 'btn btn-primary']) ?>
+</p>
 
 <div class="exposiciones-form">
         <?php $form = ActiveForm::begin ( [ 

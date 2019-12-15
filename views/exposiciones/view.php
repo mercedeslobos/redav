@@ -10,7 +10,7 @@ use app\models\Policias;
 /* @var $this yii\web\View */
 /* @var $model app\models\Exposiciones */
 
-$this->title = $modelExposicion->id;
+// $this->title = $modelExposicion->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Exposiciones'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -36,178 +36,233 @@ $this->params['breadcrumbs'][] = $this->title;
 ]);?>
     </p>
 </div>
-<?php echo htmlspecialchars($modelPersona->apellido.' '.$modelPersona->nombre); ?>
+
 
 <div class="container-fluid" style="background-color:#aaa">
 <form>
-  <div class="form-row">
   <!-- DATOS DEL SINIESTRO -->
+  <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4">FECHA DEL SINIESTRO</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" id="inputEmail4" value="<?php echo htmlspecialchars($modelSiniestro->fecha); ?>"/>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelSiniestro->fecha); ?>"/>
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">HORA DEL HECHO</label>
-      <input type="text" class="form-control" readonly class="form-control-plaintext" id="inputPassword4" value="<?php echo htmlspecialchars($modelSiniestro->hora); ?>" />
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputPassword4" value="<?php echo htmlspecialchars($modelSiniestro->hora); ?>"/>
     </div>
   </div>
-  <div class="form-group">
-    <label for="inputAddress">LUGAR DEL SUCESO</label>
-    <input type="text" class="form-control"  readonly class="form-control-plaintext" id="inputAddress" value="<?php echo htmlspecialchars($modelSiniestro->lugar); ?>" />
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputAddress">LUGAR DEL SUCESO</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputAddress" value="<?php echo htmlspecialchars($modelSiniestro->lugar); ?>"/>
+    </div>
   </div>
   <!-- END DATOS DEL SINIESTRO -->
-<!-- DATOS DEL CONDUCTOR -->
-  <div class="form-group">
-    <label for="inputAddress2">Address 2</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+  <?php for($i=0, $count = count($modelPersona);$i<$count;$i++) {
+      $modelP = $modelPersona[$i];
+      $modelV = $modelVehiculo[$i];?>
+  <!-- DATOS DEL CONDUCTOR -->
+  <div class="form-row">
+  <div class="form-group col-md-12">
+  <label >INVOLUCRADO</label>
+  </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="nya">APELLIDO Y NOMBRE</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+      id="nya" value="<?php echo htmlspecialchars($modelP->apellido.', '.$modelP->nombre); ?>"/>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="nya">TIPO</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+      id="nya" value="<?php echo htmlspecialchars($modelP->tipo_documento); ?>"/>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="nya">NRO</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+      id="nya" value="<?php echo htmlspecialchars($modelP->documento); ?>"/>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputAddress">RAZON SOCIAL</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputAddress" value="<?php echo htmlspecialchars($modelP->razon_social); ?>"/>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputAddress">DOMICILIO</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputAddress" value="<?php echo htmlspecialchars($modelP->direccion); ?>"/>
+    </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity">
+      <label for="inputEmail4">LOCALIDAD</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelP->localidad); ?>"/>
     </div>
-    <div class="form-group col-md-4">
-      <label for="inputState">State</label>
-      <select id="inputState" class="form-control">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div class="form-group col-md-2">
-      <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">PROVINCIA</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelP->provincia_id); ?>"/>
     </div>
   </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">ESTADO CIVIL</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelP->edo_civil); ?>"/>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">NACIONALIDAD</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelP->nacionalidad); ?>"/>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">FECHA DE NACIMIENTO</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelP->fecha_nacimiento); ?>"/>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">POSEE LICENCIA DE CONDUCIR?</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelP->licencia_nro); ?>"/>
+    </div>
+  </div>
+  <!-- END DATOS DEL CONDUCTOR -->
+  <!-- DATOS DEL VEHICULO -->
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputEmail4">TIPO</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->tipo); ?>"/>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputEmail4">MARCA</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->marca); ?>"/>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputEmail4">MODELO</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->modelo); ?>"/>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputEmail4">DOMINIO</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->dominio); ?>"/>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputEmail4">MOTOR Nro.</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->nro_motor); ?>"/>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputEmail4">CHASIS Nro.</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->nro_chasis); ?>"/>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">ASEGURADORA</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->aseguradora_id); ?>"/>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Nro. DE POLIZA</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->nro_poliza); ?>"/>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="inputEmail4">T. DE TRANSPORTE</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->tipo_transporte); ?>"/>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputEmail4">USOS</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->uso); ?>"/>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputEmail4">TIPO DE CARGA</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->tipo_carga); ?>"/>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputEmail4">CARGA ASEGURADA</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelV->carga_asegurada); ?>"/>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputAddress">CIRCULACION</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputAddress" value="<?php echo htmlspecialchars($modelV->circulacion); ?>"/>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputAddress">OBSERVACIONES</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputAddress" value="<?php echo htmlspecialchars($modelV->observaciones); ?>"/>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputAddress">DESPERFECTOS</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputAddress" value="<?php echo htmlspecialchars($modelV->desperfectos); ?>"/>
+    </div>
+  </div>
+
+  <!-- END DATOS DEL VEHICULO -->
+  <?php } ?>
+
+  <!-- PIE DEL FORMULARIO -->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">FECHA</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+      id="inputEmail4" value="<?php echo htmlspecialchars($modelExposicion->fecha); ?>"/>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">POLICIA</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelExposicion->policias_id); ?>"/>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Nro EXP.</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputEmail4" value="<?php echo htmlspecialchars($modelExposicion->nro); ?>"/>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputZip">DIVISION DE ACCIDENTES VIALES</label>
+      <input type="text" class="form-control" readonly class="form-control-plaintext" 
+            id="inputZip" value="<?php echo htmlspecialchars($modelExposicion->participa_division); ?>" />
+      <label for="inputZip">HA PARTICIPADO DEL SINIESTRO</label>
+    </div>
+  </div>
+  <!-- END PIE DEL FORMULARIO -->
+    
 </form>
 
 </div>
 
-<?php $form = ActiveForm::begin(); ?>
-<div class="container-fluid" style="background-color:#aaa">
-    
-    <!-- DATOS DEL CONDUCTOR -->
-    <div class="row">
-        <div class="col-sm">
-            <?= $form->field($modelPersona, 'apellido', [
-                    'template' => '<div class="col-sm-2">APELLIDO Y NOMBRE</div>
-                                <div class="col-sm-10">{input}</div>' 
-                                    ])->textInput(['maxlength' => true,'disabled' => true]) ?>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm">
-             <?= $form->field($modelPersona, 'tipo_documento', [
-                'template' => '<div class="col-sm-2">TIPO DOC.</div>
-                               <div class="col-sm-4">{input}</div>' 
-                                ])->textInput(['maxlength' => true,'disabled' => true]) ?>
-            <?= $form->field($modelPersona, 'documento', [
-                'template' => '<div class="col-sm-2">N°</div>
-                               <div class="col-sm-4">{input}</div>' 
-                                ])->textInput(['maxlength' => true,'disabled' => true]) ?>
-        </div>     
-    </div> 
-    <div class="row">
-        <div class="col-sm">
-            <?= $form->field($modelPersona, 'razon_social', [
-                    'template' => '<div class="col-sm-2">RAZON SOCIAL</div>
-                                <div class="col-sm-10">{input}{error}</div>' 
-                                    ])->textInput(['maxlength' => true,'disabled' => true]) ?>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm">
-            <?= $form->field($modelPersona, 'direccion', [
-                    'template' => '<div class="col-sm-2">DOMICILIO</div>
-                                <div class="col-sm-10">{input}{error}</div>' 
-                                    ])->textInput(['maxlength' => true,'disabled' => true]) ?>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm">
-             <?= $form->field($modelPersona, 'localidad', [
-                'template' => '<div class="col-sm-2">LOCALIDAD</div>
-                               <div class="col-sm-4">{input}</div>' 
-                                ])->textInput(['maxlength' => true,'disabled' => true]) ?>
-            <?= $form->field($modelPersona, 'provincia_id', [
-                'template' => '<div class="col-sm-2">PROVINCIA</div>
-                               <div class="col-sm-4">{input}</div>' 
-                                ])->textInput(['maxlength' => true,'disabled' => true]) ?>
-        </div>     
-    </div> 
-    <div class="row">
-        <div class="col-sm">
-             <?= $form->field($modelPersona, 'edo_civil', [
-                'template' => '<div class="col-sm-2">ESTADO CIVIL</div>
-                               <div class="col-sm-4">{input}</div>' 
-                                ])->textInput(['maxlength' => true,'disabled' => true]) ?>
-            <?= $form->field($modelPersona, 'nacionalidad', [
-                'template' => '<div class="col-sm-2">NACIONALIDAD</div>
-                               <div class="col-sm-4">{input}</div>' 
-                                ])->textInput(['maxlength' => true,'disabled' => true]) ?>
-        </div>     
-    </div> 
-    <div class="row">
-        <div class="col-sm">
-             <?= $form->field($modelPersona, 'fecha_nacimiento', [
-                'template' => '<div class="col-sm-2">FECHA DE NACIMIENTO</div>
-                               <div class="col-sm-4">{input}</div>' 
-                                ])->textInput(['maxlength' => true,'disabled' => true]) ?>
-            <?= $form->field($modelPersona, 'licencia_nro', [
-                'template' => '<div class="col-sm-2">POSEE LICENCIA DE CONDUCIR?</div>
-                               <div class="col-sm-4">{input}</div>' 
-                                ])->textInput(['maxlength' => true,'disabled' => true]) ?>
-        </div>     
-    </div>
-    <!-- END DATOS DEL CONDUCTOR -->
-    <!-- DATOS DEL VEHICULO -->
-
-    <!-- END DATOS DEL VEHICULO -->
-
-    <!-- PIE DEL FORMULARIO -->
-    <div class="row">
-        <div class="col-sm">
-             <?= $form->field($modelExposicion, 'participa_division', [
-                'template' => '<div class="col-sm-6">DIVISION DE ACCIDENTES VIALES {input} HA PARTICIPADO DEL SINIESTRO</div>' 
-                                ])->textInput(['maxlength' => true,'disabled' => true]) ?>
-            <?= $form->field($modelExposicion, 'fecha', [
-                'template' => '<div class="col-sm-2">FECHA</div>
-                               <div class="col-sm-4">{input}</div>' 
-                                ])->textInput(['maxlength' => true,'disabled' => true]) ?>
-        </div>     
-    </div>
-    <div class="row">
-        <div class="col-sm">
-             <?= $form->field($modelExposicion, 'policias_id', [
-                'template' => '<div class="col-sm-2">POLICIA</div>
-                               <div class="col-sm-4">{input}</div>' 
-                                ])->textInput(['maxlength' => true,'disabled' => true]) ?>
-            <?= $form->field($modelExposicion, 'nro', [
-                'template' => '<div class="col-sm-4">{input}</div>' 
-                                ])->textInput(['maxlength' => true,'disabled' => true]) ?>
-        </div>     
-    </div>
-    <!-- END PIE DEL FORMULARIO -->
-</div>
-<?php ActiveForm::end(); ?>
-
-   <!--<?= DetailView::widget([ 
-        'model' => $modelVehiculo,
-        'attributes' => [
-            'tipo',
-            'marca',
-            'modelo',
-            'dominio',
-            'nro_motor',
-            'nro_chasis',
-            'aseguradora_id',
-            'nro_poliza',
-            'tipo_transporte',
-            'uso',
-            'tipo_carga',
-            'carga_asegurada',
-            'circulacion',
-            'observaciones',
-            'desperfectos',
-        ],
-    ]) ?>
-   -->
+  

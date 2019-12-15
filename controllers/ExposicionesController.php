@@ -84,10 +84,10 @@ class ExposicionesController extends Controller
                 'siniestros_id' => $idS
                 ]),
             'modelSiniestro'=> $modelSiniestro = Siniestros::findOne($idS),
-            'modelPersona'=> $modelPersona = Personas::findOne([
+            'modelPersona'=> $modelPersona = Personas::findAll([
                                             'siniestros_id' => $idS
                                             ]),
-            'modelVehiculo'=> $modelVehiculo = Vehiculos::findOne([
+            'modelVehiculo'=> $modelVehiculo = Vehiculos::findAll([
                                             'siniestros_id' => $idS
                                             ]),
         ]);
@@ -236,8 +236,8 @@ class ExposicionesController extends Controller
 
     $modelExposicion = Exposiciones::findOne(['siniestros_id' => $idS]);
     $modelSiniestro = Siniestros::findOne($idS);
-    $modelPersona = Personas::findOne(['siniestros_id' => $idS]);
-    $modelVehiculo = Vehiculos::findOne(['siniestros_id' => $idS]);
+    $modelPersona = Personas::findAll(['siniestros_id' => $idS]);
+    $modelVehiculo = Vehiculos::findAll(['siniestros_id' => $idS]);
         
     Yii::$app->response->format = \yii\web\Response::FORMAT_RAW;
     $pdf = new Pdf([
